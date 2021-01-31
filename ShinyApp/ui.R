@@ -1,5 +1,5 @@
 shinyUI(dashboardPage(
-  dashboardHeader(title = "Bon Appetit"),
+  dashboardHeader(title = " French Fashion Store"),
   dashboardSidebar(sidebarMenu(
     menuItem("Introductions", tabName = "intro", icon = icon("info")),
     menuItem("User Breakdown", tabName = "userdetails", icon = icon("bar-chart-o")),
@@ -42,8 +42,7 @@ shinyUI(dashboardPage(
               fluidRow(
 
               ),
-              fluidRow(                                                                                   "2017" = 2017, "2018" = 2018, "2019" = 2019, 
-                                                                                   "2020" = 2020), selected = c(2016, 2019)))
+              fluidRow(                                                                                 
               )
             )
     ),
@@ -92,3 +91,6 @@ shinyUI(dashboardPage(
 )
 )
 )
+)
+))
+
