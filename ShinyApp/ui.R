@@ -17,8 +17,10 @@ shinyUI(dashboardPage(
                 column(offset = 1, width = 12, box(
                   p("For my data exploration project, I chose to use the web scraped data of an ecommerce French 
                     C2C store and analyzed the seller and user information based on a variety of characteristics.
-                    I also analyzed the shopping habits as well as the top sellers information.")),
-                  img(src = "fashion.jpg", height = 200)
+                    I also analyzed the shopping habits as well as the top sellers information to present a holistic view 
+                    of the analytics of a retail store, help monitor the health of the store as well as identify the key markets 
+                    and users and sellers that could be targeted to improve engagement.")),
+                  img(src = "fashion.jpg", height = 300)
               )))),
              
                 
@@ -29,15 +31,33 @@ shinyUI(dashboardPage(
             tabBox(width = 12, 
                    tabPanel("Users by Country", plotOutput("users_country")),
                    tabPanel("Users by Language", plotOutput("users_language")),
-                   tabPanel("Users by Gender", plotOutput("users_gender")),
-                   tabPanel("Users by Seniority", plotOutput("users_seniority"))
-            )),
+                   tabPanel("Users by Gender", plotOutput("users_gender"))            )),
+            
+            fluidRow(box(width=12, align="center",
+              p("Through the above graphs, it is clear that the countries with the biggest
+              market for the target users are France, USA, Great Britain, Italy and Germany.
+              However, the majority of the users use English as their preferred language,
+              followed closely by French, Italian, German and Spanish. Additionally,
+              majority of the users of the fashion store are female. Men only contribute
+              to about 1/4th of the users.
+                "))
+            ),
             
             fluidRow(
               tabBox(width = 12, 
                      tabPanel("Users by Apps", plotOutput("users_app"))
               ) 
-            )
+            ),
+            fluidRow(box(width=12, align="center",
+                         p("It is also suprising to note that the majority of 
+                         the users of the e-commerce fashion store do not use the app
+                         in order to buy or sell products as can be seen from the above
+                         graph. Sweden, Denmark and Belgium have the highest amount of users
+                         who use the app, which is surprising because my expectation was
+                         that countries with the highest amount of users would have the highest
+                         turnaround.
+                "))
+            ),
             
             ),
     tabItem(tabName = 'shoppingdetails',
@@ -47,13 +67,37 @@ shinyUI(dashboardPage(
                      tabPanel("Products Listed by Gender", plotOutput("products_listed")),
                      tabPanel("Products Sold by Gender", plotOutput("products_sold"))
               )),
-              
+              fluidRow(box(width=12, align="center",
+                           p("It is not suprising at all to note that the majority of 
+                         the products listed are by females as can be seen from the
+                         plot above. However, when we look at the male ratio of both 
+                         products listed and products sold, it seems that Australia and
+                         Italy are strong markets for men too.
+                "))
+              ),
               fluidRow(
                 
                 tabBox(width = 12, 
                        tabPanel("Number of Products Wished by Country", plotOutput("products_wished")),
                        tabPanel("Number of Products Bought by Country", plotOutput("products_bought"))
-                ))
+                )),
+              fluidRow(box(width=12, align="center",
+                           p("The above two plots show some interesting insights. First of them
+                           is the fact that the products wished by men in France is much higher
+                           than the products wished by women. This is important to note because
+                           France is the biggest market for the fashion store as it is specifically
+                           the country the company is most directly targeting. Additionally other countries
+                           with near equal ratios of products wished by men and women are Great Britain 
+                           and USA, with men being higher than women in Great Britain and
+                           only falling slightly short of women in USA.
+                "),
+                           
+                    p("Additionally, the statistics follow the same trend closely in 
+                      the amount of products bought. France has a higher conversion
+                      rate for men than women. US falls slightly short for men like
+                      it appeared in the trend for the amount of products wished.")
+                )
+              )
               
               
     )),
@@ -62,7 +106,20 @@ shinyUI(dashboardPage(
               fluidRow(
                 tabBox(width = 12, 
                        tabPanel("Top Sellers by Country", plotOutput("top_seller"))
-                ))
+                )),
+              fluidRow(box(width=12, align="center",
+                           p("The top seller market looks relatively different from
+                           the users market. It seems that the maximum sellers belong to
+                           one of the following 10 countries: Latvia, Romania, Sweden, 
+                           Bulgaria, Germany, USA, Spain, UK, France, Italy. It is expected
+                           to see a high amount of French, American and UK sellers. However,
+                           it is interesting to note that the maximum sellers come from Italy.
+                           Additionally, companies like Latvia, Romania and Bulgaria are also quite
+                           unexpected. However, it makes sense given more thought because these
+                           countries provide cheaper alternatives to clothing in comparison to
+                           some of the other more prominent EU companies.
+                "))
+              )
               
             )
             ),

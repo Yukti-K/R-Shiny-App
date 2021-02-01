@@ -92,4 +92,5 @@ top_seller <- countriestopsellers %>%
   select(.,country,sellers,topsellers,femalesellers,malesellers) %>%
   group_by(sellers) %>%
   arrange(desc(topsellers)) %>%
-  head(10)
+  head(10) 
+
