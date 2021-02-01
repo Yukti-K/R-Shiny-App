@@ -13,8 +13,7 @@ users <- read.csv("C:/Users/ykath/Desktop/Data Science Bootcamp Material/ShinyAp
 sellers <- read.csv("C:/Users/ykath/Desktop/Data Science Bootcamp Material/ShinyApp/data/sellers.csv", stringsAsFactors = FALSE)
 countriestopsellers <- read.csv("C:/Users/ykath/Desktop/Data Science Bootcamp Material/ShinyApp/data/countriestopsellers.csv", stringsAsFactors = FALSE)
 
-category_list = c('Gender', 'Language', 'Country',
-                 'Seniority')
+
 users_by_country <- users %>%
   group_by(country) %>%
   summarise(total=n()) %>%
@@ -35,3 +34,38 @@ country_top_10 <-users %>%
   arrange(desc(total))%>%
   head(10)
 
+users_by_seniority <- users %>%
+  group_by(seniority,country) %>%
+  summarise(total=n())%>%
+  arrange(desc(total))
+
+users_with_app <- users %>%
+  group_by(hasAnyApp,countryCode) %>%
+  summarise(total=n())
+
+vec <- pull(country_top_10[,1])
+
+appusers <- 
+  users_with_app %>%
+  filter(.,countryCode==vec[1] | countryCode==vec[2] | countryCode==vec[3] |
+           countryCode==vec[4] | countryCode==vec[5] | countryCode==vec[6] |
+           countryCode==vec[7] | countryCode==vec[8] | countryCode==vec[9] |
+           countryCode==vec[10])
+
+users_products_listed <- users %>%
+  select(countryCode,gender,productsListed) %>%
+  group_by(.,gender) %>%
+  arrange(desc(productsListed)) %>%
+  filter(.,countryCode==vec[1] | countryCode==vec[2] | countryCode==vec[3] |
+           countryCode==vec[4] | countryCode==vec[5] | countryCode==vec[6] |
+           countryCode==vec[7] | countryCode==vec[8] | countryCode==vec[9] |
+           countryCode==vec[10]) 
+
+users_products_sold <- users %>%
+  select(countryCode,gender,productsSold) %>%
+  group_by(.,gender) %>%
+  arrange(desc(productsSold)) %>%
+  filter(.,countryCode==vec[1] | countryCode==vec[2] | countryCode==vec[3] |
+           countryCode==vec[4] | countryCode==vec[5] | countryCode==vec[6] |
+           countryCode==vec[7] | countryCode==vec[8] | countryCode==vec[9] |
+           countryCode==vec[10])
