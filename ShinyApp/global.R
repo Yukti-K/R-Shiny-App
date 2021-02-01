@@ -69,3 +69,27 @@ users_products_sold <- users %>%
            countryCode==vec[4] | countryCode==vec[5] | countryCode==vec[6] |
            countryCode==vec[7] | countryCode==vec[8] | countryCode==vec[9] |
            countryCode==vec[10])
+
+users_products_wished <- users %>%
+  group_by(.,countryCode) %>%
+  select(countryCode,gender,productsWished) %>%
+  arrange(desc(productsWished)) %>%
+  filter(.,countryCode==vec[1] | countryCode==vec[2] | countryCode==vec[3] |
+           countryCode==vec[4] | countryCode==vec[5] | countryCode==vec[6] |
+           countryCode==vec[7] | countryCode==vec[8] | countryCode==vec[9] |
+           countryCode==vec[10]) 
+
+users_products_bought <- users %>%
+  group_by(.,countryCode) %>%
+  select(countryCode,gender,productsBought) %>%
+  arrange(desc(productsBought)) %>%
+  filter(.,countryCode==vec[1] | countryCode==vec[2] | countryCode==vec[3] |
+           countryCode==vec[4] | countryCode==vec[5] | countryCode==vec[6] |
+           countryCode==vec[7] | countryCode==vec[8] | countryCode==vec[9] |
+           countryCode==vec[10]) 
+
+top_seller <- countriestopsellers %>%
+  select(.,country,sellers,topsellers,femalesellers,malesellers) %>%
+  group_by(sellers) %>%
+  arrange(desc(topsellers)) %>%
+  head(10)

@@ -36,4 +36,19 @@ function(input, output, session){
       xlab("Countries (Limited to Top 10)") + ylab("Ratio of products sold")+ labs(fill = "Gender")+ coord_flip()
   )
   
+  output$products_wished <- renderPlot(
+    users_products_wished %>% ggplot(users_products_wished,mapping = aes(fill=countryCode,x=gender,y=productsWished))+geom_bar(position="fill",stat="identity") + 
+      xlab("Gender") + ylab("Products Wished")+ labs(fill = "Top 10 Countries")
+  )
+  
+  output$products_bought <- renderPlot(
+    users_products_bought %>% ggplot(users_products_bought,mapping = aes(fill=countryCode,x=gender,y=productsBought))+geom_bar(position="fill",stat="identity") + 
+      xlab("Gender") + ylab("Products Bought")+ labs(fill = "Top 10 Countries")
+  )
+  
+  output$top_seller <- renderPlot(
+    top_seller %>% ggplot(top_seller,mapping=aes(x=reorder(country,topsellers),topsellers))+geom_bar(stat="identity")+
+      xlab("Country") + ylab("Number of topsellers")
+  )
+  
 }
