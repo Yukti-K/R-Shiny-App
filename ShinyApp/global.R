@@ -1,17 +1,11 @@
 library(shiny)
 library(shinydashboard)
-library(DT)
-library(tidyverse)
-library(lubridate)
-library(ggthemes)
-library(googleVis)
-library(wesanderson)
-library(RColorBrewer)
-library(rex)
+library(dplyr)
+library(ggplot2)
 
-users <- read.csv("C:/Users/ykath/Desktop/Data Science Bootcamp Material/ShinyApp/data/users.csv", stringsAsFactors = FALSE)
-sellers <- read.csv("C:/Users/ykath/Desktop/Data Science Bootcamp Material/ShinyApp/data/sellers.csv", stringsAsFactors = FALSE)
-countriestopsellers <- read.csv("C:/Users/ykath/Desktop/Data Science Bootcamp Material/ShinyApp/data/countriestopsellers.csv", stringsAsFactors = FALSE)
+
+users <- read.csv("data/users.csv", stringsAsFactors = FALSE)
+countriestopsellers <- read.csv("data/countriestopsellers.csv", stringsAsFactors = FALSE)
 
 
 users_by_country <- users %>%
@@ -94,3 +88,18 @@ top_seller <- countriestopsellers %>%
   arrange(desc(topsellers)) %>%
   head(10) 
 
+Ios <- users %>% filter(hasIosApp=="True")
+Android <- users %>% filter(hasAndroidApp=="True")
+AnyApp <- users %>% filter(hasAnyApp=="True")
+
+IosPlot <- Ios %>%
+  group_by(countryCode) %>%
+  summarise(total=n()) %>%
+  arrange(desc(total)) %>%
+  head(15) 
+
+AndroidPlot <- Android %>%
+  group_by(countryCode) %>%
+  summarise(total=n()) %>%
+  arrange(desc(total)) %>%
+  head(15) 

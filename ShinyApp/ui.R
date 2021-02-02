@@ -1,5 +1,5 @@
 shinyUI(dashboardPage(
-  dashboardHeader(title = " French Fashion Store"),
+  dashboardHeader(title = "French Fashion Store"),
   dashboardSidebar(sidebarMenu(
     menuItem("Introductions", tabName = "intro", icon = icon("info")),
     menuItem("User Breakdown", tabName = "userdetails", icon = icon("bar-chart-o")),
@@ -8,13 +8,95 @@ shinyUI(dashboardPage(
     menuItem("About Me", tabName = "yukti", icon = icon("address-card"))
     
       )),
-  dashboardBody(tabItems(
+  dashboardBody(
+    
+    tags$head(tags$style(HTML('
+                                /* logo */
+                                .skin-blue .main-header .logo {
+                                background-color: #9966ff;
+                                }
+
+                                /* logo when hovered */
+                                .skin-blue .main-header .logo:hover {
+                                background-color: #9966ff;
+                                }
+
+                                /* navbar (rest of the header) */
+                                .skin-blue .main-header .navbar {
+                                background-color: #9966ff;
+                                }
+
+                                /* main sidebar */
+                                .skin-blue .main-sidebar {
+                                background-color: #9966ff;
+                                }
+
+                                /* active selected tab in the sidebarmenu */
+                                .skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
+                                background-color: #EEEEEE;
+                                }
+
+                                /* other links in the sidebarmenu */
+                                .skin-blue .main-sidebar .sidebar .sidebar-menu a{
+                                background-color: #9966ff;
+                                color: #000000;
+                                }
+
+                                /* other links in the sidebarmenu when hovered */
+                                .skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
+                                background-color: #EEEEEE;
+                                }
+                                /* toggle button when hovered  */
+                                .skin-blue .main-header .navbar .sidebar-toggle:hover{
+                                background-color: #9966ff;
+                                }
+
+                                /* body */
+                                .content-wrapper, .right-side {
+                                background-color: #9966ff;
+                                }
+
+                                '))),
+    
+    
+    
+    
+    tabItems(
     tabItem(tabName = "intro", 
             fluidPage(
-              fluidRow(column(offset = 2, width = 8, h1(tags$b("Analytics For A French Fashion Store")))),
+              fluidRow(column(offset = 2, width = 8,tags$head(tags$style('h1 {color:white;}')),
+ h1(tags$b("Market Analytics For A French E-Commerce Fashion Store")))),
               br(),
+              tags$style(HTML("
+
+
+.box.box-solid.box-danger>.box-header {
+  color:#fff;
+  background:#9966ff
+                    }
+
+.box.box-solid.box-danger{
+border-bottom-color:#9966ff;
+border-left-color:#9966ff;
+border-right-color:#9966ff;
+border-top-color:#9966ff;
+}
+
+.box.box-danger>.box-header {
+  color:#000000;
+  background:#fff
+                    }
+
+.box.box-danger{
+border-bottom-color:#9966ff;
+border-left-color:#9966ff;
+border-right-color:#9966ff;
+border-top-color:#9966ff;
+}
+
+                                    ")),
               fluidRow(
-                column(offset = 1, width = 12, box(
+                column(offset = 1, width = 12, box(title = "Problem Statement",status = "danger", solidHeader = TRUE,
                   p("For my data exploration project, I chose to use the web scraped data of an ecommerce French 
                     C2C store and analyzed the seller and user information based on a variety of characteristics.
                     I also analyzed the shopping habits as well as the top sellers information to present a holistic view 
@@ -33,7 +115,7 @@ shinyUI(dashboardPage(
                    tabPanel("Users by Language", plotOutput("users_language")),
                    tabPanel("Users by Gender", plotOutput("users_gender"))            )),
             
-            fluidRow(box(width=12, align="center",
+            fluidRow(box(width=12, align="center",title = "Key Insight",status = "danger", solidHeader = TRUE,
               p("Through the above graphs, it is clear that the countries with the biggest
               market for the target users are France, USA, Great Britain, Italy and Germany.
               However, the majority of the users use English as their preferred language,
@@ -44,19 +126,36 @@ shinyUI(dashboardPage(
             ),
             
             fluidRow(
+              infoBoxOutput("AnyApp"),infoBoxOutput("Ios"),infoBoxOutput("Android"),
               tabBox(width = 12, 
-                     tabPanel("Users by Apps", plotOutput("users_app"))
+                     tabPanel("Users by Apps", plotOutput("users_app")),
+                     tabPanel("iOS Users by Country", plotOutput("IosCountry")),
+                     tabPanel("Android Users by Country", plotOutput("AndroidCountry"))
               ) 
             ),
-            fluidRow(box(width=12, align="center",
-                         p("It is also suprising to note that the majority of 
+            fluidRow(box(width=12, align="center",title = "Key Insights",status = "danger", solidHeader = TRUE,
+                         p("1. It is also suprising to note that the majority of 
                          the users of the e-commerce fashion store do not use the app
                          in order to buy or sell products as can be seen from the above
                          graph. Sweden, Denmark and Belgium have the highest amount of users
                          who use the app, which is surprising because my expectation was
                          that countries with the highest amount of users would have the highest
-                         turnaround.
-                "))
+                         turnaround. However, this indicates that there is potential for the
+                         store to expand the market with people who use the store but are
+                         maybe not incentivized enough to use the app.
+                "),br(),
+                         p("2. Additionally, we can recognize that there is some relationship
+                         between countries with the maximum users and if they used an 
+                         app or not. However, it is harder to find a relationship between iOS and 
+                         Android using countries. It seems that iOS in general is more
+                         popular than Android among users. A lot more Spanish users used
+                         Android apps in comparison to iOS apps and that is directly opposite
+                        to the trend noticed among American users.
+                        
+                           ")
+                         
+                        
+                         )
             ),
             
             ),
@@ -67,7 +166,7 @@ shinyUI(dashboardPage(
                      tabPanel("Products Listed by Gender", plotOutput("products_listed")),
                      tabPanel("Products Sold by Gender", plotOutput("products_sold"))
               )),
-              fluidRow(box(width=12, align="center",
+              fluidRow(box(width=12, align="center",title = "Key Insight",status = "danger", solidHeader = TRUE,
                            p("It is not suprising at all to note that the majority of 
                          the products listed are by females as can be seen from the
                          plot above. However, when we look at the male ratio of both 
@@ -81,11 +180,11 @@ shinyUI(dashboardPage(
                        tabPanel("Number of Products Wished by Country", plotOutput("products_wished")),
                        tabPanel("Number of Products Bought by Country", plotOutput("products_bought"))
                 )),
-              fluidRow(box(width=12, align="center",
+              fluidRow(box(width=12, align="center",title = "Key Insight",status = "danger", solidHeader = TRUE,
                            p("The above two plots show some interesting insights. First of them
                            is the fact that the products wished by men in France is much higher
                            than the products wished by women. This is important to note because
-                           France is the biggest market for the fashion store as it is specifically
+                           France is the biggest market for the fashion store as it is
                            the country the company is most directly targeting. Additionally other countries
                            with near equal ratios of products wished by men and women are Great Britain 
                            and USA, with men being higher than women in Great Britain and
@@ -107,7 +206,7 @@ shinyUI(dashboardPage(
                 tabBox(width = 12, 
                        tabPanel("Top Sellers by Country", plotOutput("top_seller"))
                 )),
-              fluidRow(box(width=12, align="center",
+              fluidRow(box(width=12, align="center",title = "Key Insight",status = "danger", solidHeader = TRUE,
                            p("The top seller market looks relatively different from
                            the users market. It seems that the maximum sellers belong to
                            one of the following 10 countries: Latvia, Romania, Sweden, 
@@ -129,10 +228,10 @@ shinyUI(dashboardPage(
               
               fluidRow(column(offset = 2, width = 8,align="center", h1(tags$b("Yukti Kathuria")))),
       
-              
-              fluidRow(
-                column(offset = 1, width = 12, img(src = "myyukti.jpg", height = 200),
-                       box(
+              fluidRow(align="center",img(src = "myyukti.jpg", height = 200)),
+br(),br(),
+              fluidRow(align="center",
+                       box(width = 11,title = "Bio", status = "danger", solidHeader = TRUE,
                   p("Yukti's love for stories began when she was a little girl. Over the years, she moved from bedtime stories to 
                   her parents' cooking adventure stories to grander and more mysterious fables of the stars, galaxies, and the universe. 
                   This prompted her voyage into aerospace engineering. She pursued a BS and MS in Aerospace Engineering 
@@ -149,8 +248,12 @@ shinyUI(dashboardPage(
                     In the future, she looks forward to enabling companies and organizations to employ 
                     data science tools to enhance decision-making in a meaningful way."))
                   
-                ))
+                ),
               
+              fluidRow(column(width = 8,align="center",box(align="center",title = "For More Info:", status = "danger", solidHeader = TRUE,tags$a(href="https://github.com/Yukti-K", "Github"),
+
+br(),tags$a(href="https://www.linkedin.com/in/yukti-kathuria/", "LinkedIn")))
+)
               
     )
   )

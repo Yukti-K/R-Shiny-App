@@ -51,4 +51,26 @@ function(input, output, session){
       xlab("Country") + ylab("Number of topsellers")
   )
   
+  output$AnyApp <- renderInfoBox(
+    infoBox(title = "All Apps", value = nrow(AnyApp), color = "aqua", fill = FALSE)
+  )
+  
+  output$Ios <- renderInfoBox(
+    infoBox(title = "iOS", value = nrow(Ios), color = "aqua", fill = FALSE)
+  )
+  output$Android <- renderInfoBox(
+    infoBox(title = "Android", value = nrow(Android), color = "aqua", fill = FALSE)
+  )
+  
+  output$IosCountry <- renderPlot(
+    IosPlot %>% ggplot(IosPlot,mapping=aes(x=reorder(countryCode,-total),total))+geom_bar(stat="identity")+
+      ylab("Number of Users") + xlab("Country Code")+coord_flip()
+  )
+  
+  output$AndroidCountry <- renderPlot(
+    AndroidPlot %>% ggplot(IosPlot,mapping=aes(x=reorder(countryCode,-total),total))+geom_bar(stat="identity")+
+      ylab("Number of Users") + xlab("Country Code")+coord_flip()
+  )
+  
+  
 }
