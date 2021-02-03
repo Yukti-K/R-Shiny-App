@@ -13,47 +13,47 @@ shinyUI(dashboardPage(
     tags$head(tags$style(HTML('
                                 /* logo */
                                 .skin-blue .main-header .logo {
-                                background-color: #9966ff;
+                                background-color: #7c5f86;
                                 }
 
                                 /* logo when hovered */
                                 .skin-blue .main-header .logo:hover {
-                                background-color: #9966ff;
+                                background-color: #7c5f86;
                                 }
 
                                 /* navbar (rest of the header) */
                                 .skin-blue .main-header .navbar {
-                                background-color: #9966ff;
+                                background-color: #7c5f86;
                                 }
 
                                 /* main sidebar */
                                 .skin-blue .main-sidebar {
-                                background-color: #9966ff;
+                                background-color: #7c5f86;
                                 }
 
                                 /* active selected tab in the sidebarmenu */
                                 .skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
-                                background-color: #EEEEEE;
+                                background-color: #ac97b3;
                                 }
 
                                 /* other links in the sidebarmenu */
                                 .skin-blue .main-sidebar .sidebar .sidebar-menu a{
-                                background-color: #9966ff;
+                                background-color: #7c5f86;
                                 color: #000000;
                                 }
 
                                 /* other links in the sidebarmenu when hovered */
                                 .skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
-                                background-color: #EEEEEE;
+                                background-color: #ac97b3;
                                 }
                                 /* toggle button when hovered  */
                                 .skin-blue .main-header .navbar .sidebar-toggle:hover{
-                                background-color: #9966ff;
+                                background-color: #7c5f86;
                                 }
 
                                 /* body */
                                 .content-wrapper, .right-side {
-                                background-color: #9966ff;
+                                background-color: #7c5f86;
                                 }
 
                                 '))),
@@ -72,26 +72,26 @@ shinyUI(dashboardPage(
 
 .box.box-solid.box-danger>.box-header {
   color:#fff;
-  background:#9966ff
+  background:#7c5f86
                     }
 
 .box.box-solid.box-danger{
-border-bottom-color:#9966ff;
-border-left-color:#9966ff;
-border-right-color:#9966ff;
-border-top-color:#9966ff;
+border-bottom-color:#7c5f86;
+border-left-color:#7c5f86;
+border-right-color:#7c5f86;
+border-top-color:#7c5f86;
 }
 
 .box.box-danger>.box-header {
-  color:#000000;
-  background:#fff
+  color:#ac97b3;
+  background:#7c5f86
                     }
 
 .box.box-danger{
-border-bottom-color:#9966ff;
-border-left-color:#9966ff;
-border-right-color:#9966ff;
-border-top-color:#9966ff;
+border-bottom-color:#7c5f86;
+border-left-color:#7c5f86;
+border-right-color:#7c5f86;
+border-top-color:#7c5f86;
 }
 
                                     ")),
