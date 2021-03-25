@@ -6,7 +6,7 @@
 
 **Tools** : RStudio (dplyr | ggplot | shiny)
 
-**Code by** : [Yukti Kathuria] (https://github.com/Yukti-K)
+**Code by** : [Yukti Kathuria](https://github.com/Yukti-K)
 
 
 
